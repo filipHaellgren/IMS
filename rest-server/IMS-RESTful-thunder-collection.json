@@ -1,0 +1,178 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "IMS",
+    "collectionId": "80efb670-acd5-4429-b403-d0a108860262",
+    "dateExported": "2024-09-05T00:07:11.830Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "25442885-2860-400b-b8a8-695934b5d5c4",
+            "colId": "80efb670-acd5-4429-b403-d0a108860262",
+            "containerId": "",
+            "name": "Retrieve all products",
+            "url": "http://localhost:5000/api/products?inStock=true",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-09-04T17:15:41.591Z",
+            "modified": "2024-09-04T23:28:34.558Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "inStock",
+                    "value": "true",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "e2615754-5f60-4748-bd4c-3c6ddb339ae0",
+            "colId": "80efb670-acd5-4429-b403-d0a108860262",
+            "containerId": "",
+            "name": "Retrieve a product by ID",
+            "url": "http://localhost:5000/api/products/66d89a8a8fd2bb729ee8c771",
+            "method": "GET",
+            "sortNum": 15000,
+            "created": "2024-09-04T17:19:03.810Z",
+            "modified": "2024-09-04T17:36:46.180Z",
+            "headers": []
+        },
+        {
+            "_id": "6095ec87-bd29-485e-9a50-e1e823431e4d",
+            "colId": "80efb670-acd5-4429-b403-d0a108860262",
+            "containerId": "",
+            "name": "Create a new product",
+            "url": "http://localhost:5000/api/products",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-09-04T17:16:15.029Z",
+            "modified": "2024-09-04T22:55:22.086Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "  {\n    \"name\": \"The Frame\",\n    \"sku\": \"SPX30001\",\n    \"description\": \"Samsung tv chaina edition\",\n    \"price\": 1799.99,\n    \"category\": \"TV\",\n    \"manufacturer\": {\n      \"name\": \"Techersas\",\n      \"country\": \"Germany\",\n      \"website\": \"https://mobiletech.com\",\n      \"description\": \"Leading mobile phone manufacturer.\",\n      \"address\": \"789 Innovation Street\",\n      \"contactInfo\": {\n        \"name\": \"John Smith\",\n        \"email\": \"john@mobiletech.com\",\n        \"phone\": \"555-1234\"\n      }\n    },\n    \"amountInStock\": 0\n  }",
+                "form": []
+            }
+        },
+        {
+            "_id": "8235ef1d-34ed-4489-aa77-6474296bfed6",
+            "colId": "80efb670-acd5-4429-b403-d0a108860262",
+            "containerId": "",
+            "name": "Update a product by ID",
+            "url": "http://localhost:5000/api/products/66d894a88fd2bb729ee8c750",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-09-04T17:20:45.801Z",
+            "modified": "2024-09-04T17:36:10.706Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \"manufacturer\": {\n      \"name\": \"Better Manufacturer\"}\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "f4e44ebb-8247-49cf-83b4-e944ac00ec07",
+            "colId": "80efb670-acd5-4429-b403-d0a108860262",
+            "containerId": "",
+            "name": "Delete a product by ID",
+            "url": "http://localhost:5000/api/products/66d894fd8fd2bb729ee8c755",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-09-04T17:16:58.754Z",
+            "modified": "2024-09-04T17:18:12.809Z",
+            "headers": []
+        },
+        {
+            "_id": "397a7b8f-7a15-48f6-b9fc-80bd4b921b12",
+            "colId": "80efb670-acd5-4429-b403-d0a108860262",
+            "containerId": "",
+            "name": " Calculate total stock value of all products",
+            "url": "http://localhost:5000/api/products/total-stock-value",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-09-04T17:39:41.523Z",
+            "modified": "2024-09-04T17:44:52.957Z",
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ]
+        },
+        {
+            "_id": "de0b3a0e-e1f3-4dc8-aff0-8e70d8e8db63",
+            "colId": "80efb670-acd5-4429-b403-d0a108860262",
+            "containerId": "",
+            "name": " Calculate total stock value per manufacturer",
+            "url": "http://localhost:5000/api/products/total-stock-value-by-manufacturer",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2024-09-04T18:22:47.024Z",
+            "modified": "2024-09-04T18:23:21.497Z",
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ]
+        },
+        {
+            "_id": "dbb5bdbb-dbab-4efc-9fb1-9abf04f6b34b",
+            "colId": "80efb670-acd5-4429-b403-d0a108860262",
+            "containerId": "",
+            "name": "Retrieve products with less than 10 units in stock",
+            "url": "http://localhost:5000/api/products/low-stock",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2024-09-04T18:38:40.200Z",
+            "modified": "2024-09-04T18:38:50.400Z",
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ]
+        },
+        {
+            "_id": "79ac28a4-ca82-400f-ab3f-82f247a77adc",
+            "colId": "80efb670-acd5-4429-b403-d0a108860262",
+            "containerId": "",
+            "name": "Retrieve products with less than 5 units in stock (Contact info)",
+            "url": "http://localhost:5000/api/products/critical-stock",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2024-09-04T22:19:30.216Z",
+            "modified": "2024-09-04T22:19:45.766Z",
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ]
+        },
+        {
+            "_id": "d2c728f0-2fa0-4636-b1d2-f2f9894d2290",
+            "colId": "80efb670-acd5-4429-b403-d0a108860262",
+            "containerId": "",
+            "name": "Retrieve all manufactures",
+            "url": "http://localhost:5000/api/manufacturers",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2024-09-04T22:23:01.034Z",
+            "modified": "2024-09-04T22:23:47.694Z",
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ]
+        }
+    ],
+    "ref": "dLrtke10QP5OavyZfKgNrdGOc0LiDh4Y-3NAQddW2uXShkxhMdYbf-Mf-vntJYLhDxUFP_babeHcbXvRRdaVgQ"
+}
