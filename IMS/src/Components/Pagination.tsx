@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+// src/Components/Pagination.tsx
+import { useState } from 'react';
 import styles from '../CSS/Pagination.module.css'; // Import the CSS module
 
 const Pagination = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) => {
   const [currentPageGroup, setCurrentPageGroup] = useState(0); // Track the current page group
 
-  const totalPages = Math.ceil(totalPosts / postsPerPage);
+  const totalPages = Math.ceil(totalPosts / postsPerPage); // Calculate total pages based on the filtered products
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1); // Create an array of page numbers
 
   const pagesPerGroup = 15; // Define how many pages you want to show per group
@@ -52,7 +53,7 @@ const Pagination = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) =
         disabled={endIndex >= totalPages}
         className={styles.button}
       >
-         &raquo;
+        &raquo;
       </button>
     </div>
   );
