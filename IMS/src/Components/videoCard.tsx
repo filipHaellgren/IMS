@@ -1,5 +1,6 @@
 // src/Card.tsx
 import React from 'react';
+import styles from '../CSS/videoCard.module.css'; // Import the CSS module
 
 // Define the Product interface directly in the Card component file
 export interface Product {
@@ -21,7 +22,7 @@ interface CardProps {
 // Card component definition
 const Card: React.FC<CardProps> = ({ product }) => {
   return (
-    <div style={cardStyle}>
+    <div className={styles.cardStyle}>
       <h2>{product.name}</h2>
       <p><strong>Price:</strong> {product.price ? `$${product.price}` : 'N/A'}</p>
       <p><strong>Chipset:</strong> {product.chipset} </p>
@@ -34,13 +35,5 @@ const Card: React.FC<CardProps> = ({ product }) => {
   );
 };
 
-// Inline CSS for the card
-const cardStyle: React.CSSProperties = {
-  border: '1px solid #ccc',
-  padding: '16px',
-  borderRadius: '8px',
-  maxWidth: '300px',
-  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-};
 
 export default Card;
