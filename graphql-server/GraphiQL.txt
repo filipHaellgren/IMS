@@ -1,0 +1,97 @@
+# mutation {
+#   addProduct(
+#     name: "Product asdf",
+#     sku: "SKU002",
+#     description: "This is a product asdf",
+#     price: 111,
+#     category: "asdf",
+#     amountInStock: 32,
+#     Manufacturer: {
+#       name: "Manufacturer asdf",
+#       country: "Country asdf",
+#       website: "https://asdf.com",
+#       description: "Manufacturer asdf",
+#       address: "123 asdf St, City, Country",
+#       contact: "Contact asddf"
+#     },
+#     Contact: {
+#       name: "Contact asdf",
+#       email: "contact@asdf.com",
+#       phone: "123-456-asdf"
+#     }
+#   ) {
+#     name
+#     sku
+#     description
+#     price
+#     category
+#     amountInStock
+#     Manufacturer {
+#       name
+#       country
+#       website
+#       description
+#       address
+#       contact
+#     }
+#     Contact {
+#       name
+#       email
+#       phone
+#     }
+#   }
+# }
+
+# get all
+# {
+#   products {
+#     id
+#     name
+#     sku
+#   }
+# }
+
+# get one
+# {
+#   product(id: "66d8433b7e7b4faad9d8181a") {
+#     name
+#     Manufacturer {
+#       name
+#     }
+#   }
+# }
+
+
+# mutation {
+#   updateProduct(
+#     id: "66d846d5ff8033dc66a6087f",
+#     # name: "Product asdf",
+#     sku: "SKU003",
+#     # description: "This is a product asdf",
+#     # price: 111,
+#     # category: "asdf",
+#     # amountInStock: 32,
+#     # Manufacturer: {
+#     #   name: "Manufacturer asdf",
+#     #   country: "Country asdf",
+#     #   website: "https://asdf.com",
+#     #   description: "Manufacturer asdf",
+#     #   address: "123 asdf St, City, Country",
+#     #   contact: "Contact asddf"
+#     # },
+#     # Contact: {
+#     #   name: "Contact asdf",
+#     #   email: "contact@asdf.com",
+#     #   phone: "123-456-asdf"
+#     # }
+#   ) {
+#     name
+#     sku
+#   }
+# }
+
+# mutation {
+#   deleteProduct(id: "66d8433b7e7b4faad9d8181a") {
+#     name
+#   }
+# }
