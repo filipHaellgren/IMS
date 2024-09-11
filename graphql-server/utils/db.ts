@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb+srv://cluster0.ins6f.mongodb.net/ims", {
-  user: "lowelowing",
-  pass: "GOfAaUrMKrotVgqz",
+mongoose.connect(process.env.CONNECTION_STRING as string, {
+  user: process.env.USERNAME as string,
+  pass: process.env.PASSWORD as string,
 });
 
 const db = mongoose.connection;
