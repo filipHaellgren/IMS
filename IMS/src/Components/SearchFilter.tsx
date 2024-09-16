@@ -9,38 +9,53 @@ interface SearchFilterProps {
 
 const SearchFilter: React.FC<SearchFilterProps> = ({ products, onFilter }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [sortOption, setSortOption] = useState('default'); // State to handle sorting options
 
-  // Extract unique categories from the product list
-  const categories = ['All', ...new Set(products.map((product) => product.category || ''))];
-
-  // Effect to filter products whenever the search term or category changes
+  // Effect to filter and sort products whenever the search term or sort option changes
   useEffect(() => {
-    filterProducts(searchTerm, selectedCategory);
-  }, [searchTerm, selectedCategory]);
+    filterProducts(searchTerm, sortOption);
+  }, [searchTerm, sortOption]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCategory(e.target.value);
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortOption(e.target.value);
   };
 
-  // Filter products based on search term and category
-  const filterProducts = (term: string, category: string) => {
-    const filtered = products.filter((product) => {
-      const matchesSearchTerm = product.name.toLowerCase().includes(term.toLowerCase());
-      const matchesCategory = category === 'All' || product.category === category;
-      return matchesSearchTerm && matchesCategory;
-    });
+  // Filter and sort products based on search term and sort option
+  const filterProducts = (term: string, sort: string) => {
+    let filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(term.toLowerCase())
+    );
 
-    // Pass filtered products to the parent component
+    // Sort the filtered products based on the selected sort option
+    switch (sort) {
+      case 'price':
+        filtered = filtered.sort((a, b) => (b.price || 0) - (a.price || 0)); // Most expensive first
+        break;
+      case 'length':
+        filtered = filtered.sort((a, b) => b.length - a.length); // Sort by length descending
+        break;
+      case 'memory':
+        filtered = filtered.sort((a, b) => b.memory - a.memory); // Sort by memory descending
+        break;
+      case 'core_clock':
+        filtered = filtered.sort((a, b) => b.core_clock - a.core_clock); // Sort by core clock descending
+        break;
+      default:
+        // Default case (no sorting)
+        break;
+    }
+
+    // Pass filtered and sorted products to the parent component
     onFilter(filtered);
   };
 
   return (
     <div style={filterContainerStyle}>
+      {/* Search Input */}
       <input
         type="text"
         placeholder="Search products..."
@@ -49,12 +64,13 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ products, onFilter }) => {
         style={inputStyle}
       />
 
-      <select value={selectedCategory} onChange={handleCategoryChange} style={selectStyle}>
-        {categories.map((category) => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
+      {/* Sort Dropdown */}
+      <select value={sortOption} onChange={handleSortChange} style={selectStyle}>
+        <option value="default">Sort By</option>
+        <option value="price">Most Expensive</option>
+        <option value="length">Length</option>
+        <option value="memory">Memory</option>
+        <option value="core_clock">Core Clock</option>
       </select>
     </div>
   );
