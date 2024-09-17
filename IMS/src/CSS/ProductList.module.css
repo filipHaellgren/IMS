@@ -1,7 +1,6 @@
 .productList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-  
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     gap: 16px;
