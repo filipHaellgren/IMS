@@ -1,52 +1,26 @@
 import {
+  GraphQLID,
+  GraphQLInputObjectType,
+  GraphQLInt,
+  GraphQLList,
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
-  GraphQLInt,
-  GraphQLList,
-  GraphQLID,
-  GraphQLInputObjectType,
 } from "graphql";
-import { Product } from "./models";
+import { Product } from "../models";
+import { EmailScalar } from "../utils/emailScalar";
+import { ManufacturerType, ProductType } from "./typedefs";
 
-// Types --------------------------------------------
-const ManufacturerType = new GraphQLObjectType({
-  name: "Manufacturer",
+// Input Types --------------------------------------------
+const ContactInputType = new GraphQLInputObjectType({
+  name: "ContactInput",
   fields: {
     name: { type: GraphQLString },
-    country: { type: GraphQLString },
-    website: { type: GraphQLString },
-    description: { type: GraphQLString },
-    address: { type: GraphQLString },
-    contact: { type: GraphQLString },
-  },
-});
-
-const ContactType = new GraphQLObjectType({
-  name: "Contact",
-  fields: {
-    name: { type: GraphQLString },
-    email: { type: GraphQLString },
+    email: { type: EmailScalar },
     phone: { type: GraphQLString },
   },
 });
 
-const ProductType = new GraphQLObjectType({
-  name: "Product",
-  fields: {
-    id: { type: GraphQLID },
-    name: { type: GraphQLString },
-    sku: { type: GraphQLString },
-    description: { type: GraphQLString },
-    price: { type: GraphQLInt },
-    category: { type: GraphQLString },
-    amountInStock: { type: GraphQLInt },
-    Manufacturer: { type: ManufacturerType },
-    Contact: { type: ContactType },
-  },
-});
-
-// Input Types --------------------------------------------
 const ManufacturerInputType = new GraphQLInputObjectType({
   name: "ManufacturerInput",
   fields: {
@@ -55,20 +29,11 @@ const ManufacturerInputType = new GraphQLInputObjectType({
     website: { type: GraphQLString },
     description: { type: GraphQLString },
     address: { type: GraphQLString },
-    contact: { type: GraphQLString },
+    Contact: { type: ContactInputType },
   },
 });
 
-const ContactInputType = new GraphQLInputObjectType({
-  name: "ContactInput",
-  fields: {
-    name: { type: GraphQLString },
-    email: { type: GraphQLString },
-    phone: { type: GraphQLString },
-  },
-});
-
-// Queries -----------------------------
+// Queries --------------------------------------------
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -156,7 +121,6 @@ const Mutation = new GraphQLObjectType({
         category: { type: GraphQLString },
         amountInStock: { type: GraphQLInt },
         Manufacturer: { type: ManufacturerInputType },
-        Contact: { type: ContactInputType },
       },
       resolve(parent, args) {
         const product = new Product({
@@ -183,7 +147,6 @@ const Mutation = new GraphQLObjectType({
         category: { type: GraphQLString },
         amountInStock: { type: GraphQLInt },
         Manufacturer: { type: ManufacturerInputType },
-        Contact: { type: ContactInputType },
       },
       resolve(parent, args) {
         return Product.findByIdAndUpdate(

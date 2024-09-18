@@ -13,12 +13,11 @@ const ProductSchema = new mongoose.Schema({
     website: String,
     description: String,
     address: String,
-    contact: String,
-  },
-  Contact: {
-    name: String,
-    email: String,
-    phone: String,
+    Contact: {
+      name: String,
+      email: String,
+      phone: String,
+    },
   },
 });
 
