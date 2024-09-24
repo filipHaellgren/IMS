@@ -7,13 +7,13 @@ const ProductSchema = new mongoose.Schema({
   price: Number,
   category: String,
   amountInStock: Number,
-  Manufacturer: {
+  manufacturer: {
     name: String,
     country: String,
     website: String,
     description: String,
     address: String,
-    Contact: {
+    contactInfo: {
       name: String,
       email: String,
       phone: String,

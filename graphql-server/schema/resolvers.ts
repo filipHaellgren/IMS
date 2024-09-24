@@ -29,7 +29,7 @@ const ManufacturerInputType = new GraphQLInputObjectType({
     website: { type: GraphQLString },
     description: { type: GraphQLString },
     address: { type: GraphQLString },
-    Contact: { type: ContactInputType },
+    contactInfo: { type: ContactInputType },
   },
 });
 
@@ -78,7 +78,7 @@ const RootQuery = new GraphQLObjectType({
         const res = await Product.aggregate([
           {
             $group: {
-              _id: "$Manufacturer.name",
+              _id: "$manufacturer.name",
               total: { $sum: { $multiply: ["$price", "$amountInStock"] } },
             },
           },
@@ -101,7 +101,7 @@ const RootQuery = new GraphQLObjectType({
     manufacturers: {
       type: new GraphQLList(ManufacturerType),
       resolve() {
-        return Product.distinct("Manufacturer");
+        return Product.distinct("manufacturer");
       },
     },
   },
@@ -120,7 +120,7 @@ const Mutation = new GraphQLObjectType({
         price: { type: GraphQLInt },
         category: { type: GraphQLString },
         amountInStock: { type: GraphQLInt },
-        Manufacturer: { type: ManufacturerInputType },
+        manufacturer: { type: ManufacturerInputType },
       },
       resolve(parent, args) {
         const product = new Product({
@@ -130,8 +130,8 @@ const Mutation = new GraphQLObjectType({
           price: args.price,
           category: args.category,
           amountInStock: args.amountInStock,
-          Manufacturer: args.Manufacturer,
-          Contact: args.Contact,
+          manufacturer: args.manufacturer,
+          contactInfo: args.contactInfo,
         });
         return product.save();
       },
@@ -146,7 +146,7 @@ const Mutation = new GraphQLObjectType({
         price: { type: GraphQLInt },
         category: { type: GraphQLString },
         amountInStock: { type: GraphQLInt },
-        Manufacturer: { type: ManufacturerInputType },
+        manufacturer: { type: ManufacturerInputType },
       },
       resolve(parent, args) {
         return Product.findByIdAndUpdate(
@@ -158,8 +158,8 @@ const Mutation = new GraphQLObjectType({
             price: args.price,
             category: args.category,
             amountInStock: args.amountInStock,
-            Manufacturer: args.Manufacturer,
-            Contact: args.Contact,
+            manufacturer: args.manufacturer,
+            contactInfo: args.contactInfo,
           },
           { new: true }
         );
