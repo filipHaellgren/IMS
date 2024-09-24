@@ -17,7 +17,7 @@ const App = () => {
   const firstPostIndex = lastPostIndex - postsPerPage;
 
   // Get the current posts based on pagination
-  const [currentPosts, setCurrentPosts] = useState([]);
+  const [currentPosts, setCurrentPosts] = useState<Product[]>([]);
 
   // Handle filter update from SearchFilter component
   const handleFilter = (filtered: Product[]) => {
@@ -41,6 +41,12 @@ const App = () => {
 
     fetchData();
   }, []);
+
+  React.useEffect(() => {
+    const lastPostIndex = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+    setCurrentPosts(filteredProducts.slice(firstPostIndex, lastPostIndex));
+  }, [currentPage, filteredProducts]);
 
   return (
     <div style={appStyle}>

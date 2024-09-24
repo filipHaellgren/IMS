@@ -43,19 +43,17 @@ const Card: React.FC<CardProps> = ({ product }) => {
         <strong>Price:</strong> {product.price ? `$${product.price}` : "N/A"}
       </p>
       <p>
-        <strong>Description:</strong> {product.description}{" "}
+        <strong>Description:</strong> {product.description}
       </p>
       <p>
-        <strong>Category:</strong> {product.category} GB
+        <strong>Category:</strong> {product.category}
       </p>
       <p>
-        <strong>Amount in stock:</strong> {product.amountInStock} MHz
+        <strong>Amount in stock:</strong> {product.amountInStock}
       </p>
       <p>
-        <strong>Manufacturer:</strong> {product.manufacturer.name} MHz
+        <strong>Manufacturer:</strong> {product.manufacturer.name}
       </p>
-      {/* <p><strong>Color:</strong> {product.color}</p>
-      <p><strong>Length:</strong> {product.length} mm</p> */}
     </div>
   );
 };
