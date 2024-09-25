@@ -1,8 +1,18 @@
 // src/Components/Pagination.tsx
-import { useState } from 'react';
-import styles from '../CSS/Pagination.module.css'; // Import the CSS module
+import { useState } from "react";
+import styles from "../CSS/Pagination.module.css"; // Import the CSS module
 
-const Pagination = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) => {
+const Pagination = ({
+  totalPosts,
+  postsPerPage,
+  setCurrentPage,
+  currentPage,
+}: {
+  totalPosts: number;
+  postsPerPage: number;
+  setCurrentPage: (page: number) => void;
+  currentPage: number;
+}) => {
   const [currentPageGroup, setCurrentPageGroup] = useState(0); // Track the current page group
 
   const totalPages = Math.ceil(totalPosts / postsPerPage); // Calculate total pages based on the filtered products
@@ -33,7 +43,7 @@ const Pagination = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) =
         disabled={currentPageGroup === 0}
         className={styles.button}
       >
-        &laquo; 
+        &laquo;
       </button>
 
       {/* Page Number Buttons */}
@@ -41,7 +51,9 @@ const Pagination = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) =
         <button
           key={page}
           onClick={() => setCurrentPage(page)}
-          className={`${styles.button} ${page === currentPage ? styles.active : ''}`}
+          className={`${styles.button} ${
+            page === currentPage ? styles.active : ""
+          }`}
         >
           {page}
         </button>

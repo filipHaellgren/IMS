@@ -1,17 +1,32 @@
 // src/Card.tsx
-import React from 'react';
-import styles from '../CSS/videoCard.module.css'; // Import the CSS module
+import React from "react";
+import styles from "../CSS/videoCard.module.css"; // Import the CSS module
 
-// Define the Product interface directly in the Card component file
+interface Contact {
+  name: string;
+  email: string;
+  phone: string;
+}
+
+// Manufacturer subdocument
+interface Manufacturer {
+  name: string;
+  country: string;
+  website: string;
+  description: string;
+  address: string;
+  contactInfo: Contact;
+}
+
+// Product model
 export interface Product {
   name: string;
-  price: number | null;
-  chipset: string;
-  memory: number;
-  core_clock: number;
-  boost_clock: number;
-  color: string;
-  length: number;
+  sku: string;
+  description: string;
+  price: number;
+  category: string;
+  manufacturer: Manufacturer;
+  amountInStock: number;
 }
 
 // Props type definition for the Card component
@@ -24,16 +39,23 @@ const Card: React.FC<CardProps> = ({ product }) => {
   return (
     <div className={styles.cardStyle}>
       <h2>{product.name}</h2>
-      <p><strong>Price:</strong> {product.price ? `$${product.price}` : 'N/A'}</p>
-      <p><strong>Chipset:</strong> {product.chipset} </p>
-      <p><strong>Memory:</strong> {product.memory} GB</p>
-      <p><strong>Core Clock:</strong> {product.core_clock} MHz</p>
-      <p><strong>Boost Clock:</strong> {product.boost_clock} MHz</p>
-      <p><strong>Color:</strong> {product.color}</p>
-      <p><strong>Length:</strong> {product.length} mm</p>
+      <p>
+        <strong>Price:</strong> {product.price ? `$${product.price}` : "N/A"}
+      </p>
+      <p>
+        <strong>Description:</strong> {product.description}
+      </p>
+      <p>
+        <strong>Category:</strong> {product.category}
+      </p>
+      <p>
+        <strong>Amount in stock:</strong> {product.amountInStock}
+      </p>
+      <p>
+        <strong>Manufacturer:</strong> {product.manufacturer.name}
+      </p>
     </div>
   );
 };
-
 
 export default Card;

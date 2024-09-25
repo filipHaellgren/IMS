@@ -1,9 +1,15 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
-mongoose.connect(process.env.CONNECTION_STRING as string, {
-  user: process.env.USERNAME as string,
-  pass: process.env.PASSWORD as string,
-});
+const mongoUri = process.env.MONGO_URI;
+
+if (!mongoUri) {
+  console.error("MONGO_URI is not defined in .env file");
+  process.exit(1); // Exit if MongoDB connection string is missing
+}
+
+mongoose.connect(mongoUri);
 
 const db = mongoose.connection;
 
