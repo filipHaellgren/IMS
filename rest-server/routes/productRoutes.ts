@@ -45,14 +45,25 @@ router.get('/total-stock-value', async (req, res) => {
 });
 
 // Retrieves the total stock value by manufacturer
-router.get('/total-stock-value-by-manufacturer', async (req, res) => {
+router.get("/total-stock-value-by-manufacturer", async (req, res) => {
   try {
     const totalStockValueByManufacturer = await Product.aggregate([
       {
         $group: {
           _id: "$manufacturer.name",
-          totalStockValue: { $sum: { $multiply: ["$price", "$amountInStock"] } },
+          totalStockValue: {
+            $sum: { $multiply: ["$price", "$amountInStock"] },
+          },
         },
+      },
+      {
+        $project: {
+          _id: 1,
+          totalStockValue: { $round: ["$totalStockValue", 2] }, // Round to 2 decimal places
+        },
+      },
+      {
+        $sort: { totalStockValue: -1 }, // Sort by totalStockValue in descending order
       },
     ]);
 
@@ -66,6 +77,8 @@ router.get('/total-stock-value-by-manufacturer', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
 
 // Retrieves all products with query filters
 router.get('/', async (req, res) => {
